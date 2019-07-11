@@ -27,18 +27,18 @@ namespace chickenshack
       });
 
       List<int> employeeIds = new List<int>() { 0, 11, 2 };
-      try
+      employeeIds.ForEach(id =>
       {
-        employeeIds.ForEach(id =>
+        try
         {
           Employee employee = chickenShack.GetEmployeeById(id);
           Console.WriteLine($"Employee #{id} is {employee.FirstName} {employee.LastName}");
-        });
-      }
-      catch (ArgumentOutOfRangeException ex)
-      {
-        Console.WriteLine($"Something went wrong: {ex.Message}");
-      }
+        }
+        catch (ArgumentOutOfRangeException _ex)
+        {
+          Console.WriteLine($"Employee {id} was not found at the company.");
+        }
+      });
     }
   }
 }
